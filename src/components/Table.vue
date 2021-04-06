@@ -39,6 +39,7 @@ export default {
     return {};
   },
   computed: {
+    // tablo başlıkların oluşturmak için gereken arrayi döndürür
     arrayForHeader: function() {
       let headerArr = [];
       if (this.items[0]) {

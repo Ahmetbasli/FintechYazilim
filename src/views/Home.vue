@@ -20,7 +20,7 @@
     <Table :items="desiredArr" />
 
     <h5 v-for="matchResult in matchResults" :key="matchResult.idForKey">
-      {{ JSON.stringify(matchResult, null, "\t") }}
+      {{ !capitalText ? JSON.stringify(matchResult, null, "\t") : "" }}
     </h5>
   </div>
 </template>
@@ -120,6 +120,7 @@ export default {
 
           //Aşağıdaki iki forloop nested objelerin içerisinde arama yapmayı sağlıyor
           // Şu anlık gerek yok  daha hassas aramalar için kullanılabilir
+
           /*
         const firstNestedAttributes = item[attribute];
         for (const firstNestedAttribute in firstNestedAttributes) {
@@ -159,13 +160,15 @@ export default {
       }
       return false;
     },
+    // sonuçları aramada hangi objenin hangi
+    //attribute ünde bulduğunun array ini döndürür
     showFilteredData() {
       console.log(this.matchResults);
       return JSON.stringify(this.matchResults, null, "\t");
     },
   },
   computed: {
-    // alt komponent olan tablo ya gönderilir
+    // child komponent olan tablo ya gönderilir
     desiredArr: function() {
       return !this.capitalText
         ? this.createArrayof4(this.fiteredArrByAnything())
